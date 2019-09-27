@@ -4,16 +4,16 @@ const App = props => {
   const [state, setState] = useState({ selectedCharacter: 1, side: "light", destroyed: false });
 
   const sideHandler = side => {
-    setState({ ...state, side });
+    setState({ side });
   };
 
   const charSelectHandler = event => {
     const charId = event.target.value;
-    setState({ ...state, selectedCharacter: charId });
+    setState({ selectedCharacter: charId });
   };
 
   const destructionHandler = () => {
-    setState();
+    setState({ destroyed: true });
   };
   return <div></div>;
 };
