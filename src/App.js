@@ -16,17 +16,20 @@ const App = props => {
     setState({ destroyed: true });
   };
 
-  <CharPicker
-    side={state.side}
-    selectedChar={state.selectedCharacter}
-    onCharSelect={charSelectHandler}
-  />;
-  <Character selectedChar={state.selectedCharacter} />;
-  <button onClick={()=>setState({side:'light'})}>Light Side</button>
-  <button onClick={()=>setState({side:'dark'})}>Dark Side</button>
-  {state.side === 'dark' && (<button onClick={destructionHandler}>DESTROY!</button>)}
-
-  return <div></div>;
+  return (
+    <>
+      <CharPicker
+        side={state.side}
+        selectedChar={state.selectedCharacter}
+        onCharSelect={charSelectHandler}
+      />
+      ;
+      <Character selectedChar={state.selectedCharacter} />;
+      <button onClick={() => sideHandler("light")}>Light Side</button>
+      <button onClick={() => sideHandler("dark")}>Dark Side</button>
+      {state.side === "dark" && <button onClick={destructionHandler}>DESTROY!</button>}
+    </>
+  );
 };
 
 export default App;
