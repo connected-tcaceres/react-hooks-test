@@ -4,32 +4,34 @@ import CharPicker from "./components/CharPicker";
 import Character from "./components/Character";
 
 const App = props => {
-  const [state, setState] = useState({ selectedCharacter: 1, side: "light", destroyed: false });
+  const [chosenSide, setChosenSide] = useState("light");
+  const [selectedCharacter, setSelectedCharacter] = useState(1);
+  const [destroyed, setDestroyed] = useState(false);
 
   const sideHandler = side => {
-    setState({ ...state, side: side });
+    setChosenSide(side);
   };
 
   const charSelectHandler = event => {
     const charId = event.target.value;
-    setState({ ...state, selectedCharacter: charId });
+    setSelectedCharacter(charId);
   };
 
   const destructionHandler = () => {
-    setState({ ...state, destroyed: true });
+    setDestroyed(true);
   };
 
-  let content = !state.destroyed ? (
+  let content = !destroyed ? (
     <>
       <CharPicker
-        side={state.side}
-        selectedChar={state.selectedCharacter}
+        side={chosenSide}
+        selectedChar={selectedCharacter}
         onCharSelect={charSelectHandler}
       />
-      <Character selectedChar={state.selectedCharacter} />
+      <Character selectedChar={selectedCharacter} />
       <button onClick={() => sideHandler("light")}>Light Side</button>
       <button onClick={() => sideHandler("dark")}>Dark Side</button>
-      {state.side === "dark" && <button onClick={destructionHandler}>DESTROY!</button>}
+      {chosenSide === "dark" && <button onClick={destructionHandler}>DESTROY!</button>}
     </>
   ) : (
     <h1>Total destruction!</h1>
