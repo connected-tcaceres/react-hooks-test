@@ -34,7 +34,7 @@ const App = props => {
       {chosenSide === "dark" && <button onClick={destructionHandler}>DESTROY!</button>}
     </>
   ) : (
-    <h1>Total destruction!</h1>
+    <h1>Total destruction!!!</h1>
   );
 
   return <>{content}</>;
