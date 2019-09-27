@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState} from 'react';
 
 import CharPicker from './components/CharPicker';
 import Character from './components/Character';
 
-class App extends Component {
-  state = {
-    selectedCharacter: 1,
+const App = (props) => {
+  const [state,setState] = useState({selectedCharacter: 1,
     side: 'light',
-    destroyed: false
-  };
+    destroyed: false});
 
   sideHandler = side => {
     this.setState({ side: side });
