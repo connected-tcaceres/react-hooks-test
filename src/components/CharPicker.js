@@ -47,5 +47,4 @@ const CharPicker = props => {
 
   return content;
 };
-
 export default CharPicker;
