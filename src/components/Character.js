@@ -40,9 +40,16 @@ const Character = props => {
     console.log("component did update");
     fetchData();
     return () => {
-      console.log("Too soon...");
+      console.log("Cleaning up on each change of selected character...");
     };
   }, [props.selectedChar]);
+
+  //example two
+  useEffect(() => {
+    return () => {
+      console.log("component did unmount");
+    };
+  }, []);
 
   let content = <p>Loading Character...</p>;
 
@@ -64,3 +71,4 @@ const Character = props => {
 };
 
 export default Character;
+// export default React.memo(Character); --> should component update
