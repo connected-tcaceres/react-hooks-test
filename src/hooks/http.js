@@ -6,6 +6,7 @@ export const useHttp = (url, dependencies) => {
 
   useEffect(() => {
     setIsLoading(true);
+    console.log("sending HTTP request");
     fetch(url)
       .then(response => {
         if (!response.ok) {
