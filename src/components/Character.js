@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Summary from "./Summary";
 
 const Character = props => {
-  const [loadedCharacter, setLoadedCharacter] = useState("");
+  const [loadedCharacter, setLoadedCharacter] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = () => {
@@ -29,7 +29,7 @@ const Character = props => {
           movieCount: charData.films.length
         };
         setIsLoading(false);
-        setLoadedChar(loadedCharacter);
+        setLoadedCharacter(loadedCharacter);
       })
       .catch(err => {
         console.log(err);
@@ -50,18 +50,18 @@ const Character = props => {
 
   let content = <p>Loading Character...</p>;
 
-  if (!isLoading && loadedChar.id) {
+  if (!isLoading && loadedCharacter.id) {
     content = (
       <Summary
-        name={loadedChar.name}
-        gender={loadedChar.gender}
-        height={loadedChar.height}
-        hairColor={loadedChar.colors.hair}
-        skinColor={loadedChar.colors.skin}
-        movieCount={loadedChar.movieCount}
+        name={loadedCharacter.name}
+        gender={loadedCharacter.gender}
+        height={loadedCharacter.height}
+        hairColor={loadedCharacter.colors.hair}
+        skinColor={loadedCharacter.colors.skin}
+        movieCount={loadedCharacter.movieCount}
       />
     );
-  } else if (!isLoading && !loadedChar.id) {
+  } else if (!isLoading && !loadedCharacter.id) {
     content = <p>Failed to fetch character.</p>;
   }
   return content;
