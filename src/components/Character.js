@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { useHttp } from "../hooks/http";
 import Summary from "./Summary";
 
 const Character = props => {
-  const [loadedCharacter, setLoadedCharacter] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-
   const [isLoading, fetchedData] = useHttp("https://swapi.co/api/people/" + props.selectedChar, [
     props.selectedChar
   ]);
@@ -26,7 +23,6 @@ const Character = props => {
     };
   }
 
-  //example two
   useEffect(() => {
     return () => {
       console.log("component did unmount");
@@ -35,7 +31,7 @@ const Character = props => {
 
   let content = <p>Loading Character...</p>;
 
-  if (!isLoading && loadedCharacter.id) {
+  if (!isLoading && loadedCharacter) {
     content = (
       <Summary
         name={loadedCharacter.name}
@@ -46,7 +42,7 @@ const Character = props => {
         movieCount={loadedCharacter.movieCount}
       />
     );
-  } else if (!isLoading && !loadedCharacter.id) {
+  } else if (!isLoading && !loadedCharacter) {
     content = <p>Failed to fetch character.</p>;
   }
   return content;
