@@ -39,14 +39,10 @@ const Character = props => {
   useEffect(() => {
     console.log("component did update");
     fetchData();
-  }, [props.selectedChar]);
-
-  useEffect(() => {
-    fetchData();
     return () => {
       console.log("Too soon...");
     };
-  }, []);
+  }, [props.selectedChar]);
 
   let content = <p>Loading Character...</p>;
 
